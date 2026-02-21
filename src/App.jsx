@@ -90,6 +90,7 @@ export default function App() {
         
         @font-face {
           font-family: 'Fantezy';
+          /* ensure font file resides in public/ so it's served correctly */
           src: url('/33-B-Fantezy.ttf') format('truetype');
           font-weight: normal;
           font-style: normal;
