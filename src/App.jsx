@@ -172,7 +172,7 @@ export default function App() {
             <div className="glass-panel rounded-3xl p-4 md:p-10 flex flex-col items-center animate-fade-in-up w-full max-w-xs sm:max-w-sm mx-auto mt-8">
               
               {/* اختيار التسبيح */}
-              <div className="w-full mb-8">
+              <div className="relative w-full mb-8">
                 <select 
                   value={currentTasbeehIndex}
                   onChange={(e) => setCurrentTasbeehIndex(Number(e.target.value))}
@@ -185,6 +185,8 @@ export default function App() {
                     </option>
                   ))}
                 </select>
+                {/* مؤشر السهم لتمييز أنه قائمة منسدلة */}
+                <svg className="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none text-amber-400" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
               </div>
 
               {/* النص الحالي الكبير */}
