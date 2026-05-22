@@ -223,20 +223,6 @@ export default function App() {
                   <p className="text-amber-400 font-cairo text-[10px] md:text-xs mt-0.5 md:mt-1">يوم</p>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-1.5 md:gap-2">
-                <div className="bg-emerald-950/40 md:bg-emerald-950/60 border border-amber-500/10 rounded-xl py-1.5 md:py-2 px-1 text-center">
-                  <p className="text-base md:text-2xl text-amber-100/90 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.hours).padStart(2, '0')}</p>
-                  <p className="text-amber-500/60 font-cairo text-[10px] md:text-xs mt-0.5 md:mt-1">ساعة</p>
-                </div>
-                <div className="bg-emerald-950/40 md:bg-emerald-950/60 border border-amber-500/10 rounded-xl py-1.5 md:py-2 px-1 text-center">
-                  <p className="text-base md:text-2xl text-amber-100/90 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.minutes).padStart(2, '0')}</p>
-                  <p className="text-amber-500/60 font-cairo text-[10px] md:text-xs mt-0.5 md:mt-1">دقيقة</p>
-                </div>
-                <div className="bg-emerald-950/40 md:bg-emerald-950/60 border border-amber-500/10 rounded-xl py-1.5 md:py-2 px-1 text-center">
-                  <p className="text-base md:text-2xl text-amber-100/90 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.seconds).padStart(2, '0')}</p>
-                  <p className="text-amber-500/60 font-cairo text-[10px] md:text-xs mt-0.5 md:mt-1">ثانية</p>
-                </div>
-              </div>
             </div>
           </header>
         </div>
