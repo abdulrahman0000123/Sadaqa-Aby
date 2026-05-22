@@ -5,6 +5,7 @@ export default function App() {
   const [currentTasbeehIndex, setCurrentTasbeehIndex] = useState(0);
   const [counts, setCounts] = useState({});
   const [totalCount, setTotalCount] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState({ years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // قائمة التسبيحات
   const tasbeehList = [
@@ -40,6 +41,42 @@ export default function App() {
       count: 3
     }
   ];
+
+  // عداد الوقت المنقضي منذ الوفاة
+  useEffect(() => {
+    const deathDate = new Date(2021, 1, 27, 0, 0, 0); // 27 فبراير 2021
+
+    const updateCounter = () => {
+      const now = new Date();
+
+      let years = now.getFullYear() - deathDate.getFullYear();
+      let months = now.getMonth() - deathDate.getMonth();
+      let days = now.getDate() - deathDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonthEnd.getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      setTimeElapsed({
+        years,
+        months,
+        days,
+        hours: now.getHours(),
+        minutes: now.getMinutes(),
+        seconds: now.getSeconds()
+      });
+    };
+
+    updateCounter();
+    const interval = setInterval(updateCounter, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // استرجاع العدادات من LocalStorage عند التحميل
   useEffect(() => {
@@ -145,6 +182,57 @@ export default function App() {
             <p className="text-gray-300 font-diwani text-xl md:text-3xl mt-2 mx-auto leading-relaxed text-center">
               "اللهم اجعل قبره روضة من رياض الجنة، واغفر له وارحمه برحمتك التي وسعت كل شيء"
             </p>
+
+            {/* معلومات الميلاد والوفاة + عداد الوقت المنقضي */}
+            <div className="mt-8 glass-panel rounded-2xl p-5 w-full max-w-lg mx-auto">
+              {/* التواريخ */}
+              <div className="flex justify-center gap-8 mb-5">
+                <div className="text-center">
+                  <p className="text-amber-400 font-cairo text-xs md:text-sm mb-1">المولود في</p>
+                  <p className="text-white font-cairo font-bold text-sm md:text-base">28 نوفمبر 1964</p>
+                </div>
+                <div className="text-amber-500/60 text-2xl self-center">|</div>
+                <div className="text-center">
+                  <p className="text-amber-400 font-cairo text-xs md:text-sm mb-1">توفي بتاريخ</p>
+                  <p className="text-white font-cairo font-bold text-sm md:text-base">27 فبراير 2021</p>
+                </div>
+              </div>
+
+              {/* عنوان العداد */}
+              <p className="text-amber-300 font-cairo text-sm md:text-base text-center mb-4 font-semibold tracking-wide">
+                مضى على وفاته رحمه الله
+              </p>
+
+              {/* صفوف العداد */}
+              <div className="grid grid-cols-3 gap-2 mb-2">
+                <div className="bg-emerald-900/60 border border-amber-500/20 rounded-xl py-2 px-1 text-center">
+                  <p className="text-2xl md:text-3xl text-white font-bold font-cairo leading-none">{timeElapsed.years}</p>
+                  <p className="text-amber-400 font-cairo text-xs mt-1">سنة</p>
+                </div>
+                <div className="bg-emerald-900/60 border border-amber-500/20 rounded-xl py-2 px-1 text-center">
+                  <p className="text-2xl md:text-3xl text-white font-bold font-cairo leading-none">{timeElapsed.months}</p>
+                  <p className="text-amber-400 font-cairo text-xs mt-1">شهر</p>
+                </div>
+                <div className="bg-emerald-900/60 border border-amber-500/20 rounded-xl py-2 px-1 text-center">
+                  <p className="text-2xl md:text-3xl text-white font-bold font-cairo leading-none">{timeElapsed.days}</p>
+                  <p className="text-amber-400 font-cairo text-xs mt-1">يوم</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-emerald-950/60 border border-amber-500/10 rounded-xl py-2 px-1 text-center">
+                  <p className="text-xl md:text-2xl text-amber-100 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.hours).padStart(2, '0')}</p>
+                  <p className="text-amber-500/70 font-cairo text-xs mt-1">ساعة</p>
+                </div>
+                <div className="bg-emerald-950/60 border border-amber-500/10 rounded-xl py-2 px-1 text-center">
+                  <p className="text-xl md:text-2xl text-amber-100 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.minutes).padStart(2, '0')}</p>
+                  <p className="text-amber-500/70 font-cairo text-xs mt-1">دقيقة</p>
+                </div>
+                <div className="bg-emerald-950/60 border border-amber-500/10 rounded-xl py-2 px-1 text-center">
+                  <p className="text-xl md:text-2xl text-amber-100 font-bold font-cairo leading-none tabular-nums">{String(timeElapsed.seconds).padStart(2, '0')}</p>
+                  <p className="text-amber-500/70 font-cairo text-xs mt-1">ثانية</p>
+                </div>
+              </div>
+            </div>
           </header>
         </div>
 
