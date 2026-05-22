@@ -186,7 +186,7 @@ export default function App() {
             {/* معلومات الميلاد والوفاة + عداد الوقت المنقضي */}
             <div className="mt-6 md:mt-8 rounded-2xl p-3 md:p-5 w-full max-w-[280px] md:max-w-lg mx-auto bg-black/30 md:bg-transparent md:glass-panel border border-amber-500/15 md:border-amber-500/20 backdrop-blur-sm md:backdrop-blur-[12px]">
               {/* التواريخ */}
-              <div className="flex justify-center gap-5 md:gap-8 mb-3 md:mb-5">
+              <div className="flex justify-center gap-5 md:gap-8 mb-3 md:mb-4">
                 <div className="text-center">
                   <p className="text-amber-400 font-cairo text-[10px] md:text-sm mb-0.5 md:mb-1">المولود في</p>
                   <p className="text-white/90 font-cairo font-bold text-xs md:text-base">28 نوفمبر 1964</p>
@@ -195,6 +195,14 @@ export default function App() {
                 <div className="text-center">
                   <p className="text-amber-400 font-cairo text-[10px] md:text-sm mb-0.5 md:mb-1">توفي بتاريخ</p>
                   <p className="text-white/90 font-cairo font-bold text-xs md:text-base">27 فبراير 2021</p>
+                </div>
+              </div>
+
+              {/* العمر */}
+              <div className="flex justify-center mb-3 md:mb-5">
+                <div className="bg-emerald-900/50 border border-amber-500/25 rounded-xl px-4 md:px-6 py-1.5 md:py-2 text-center">
+                  <p className="text-amber-400 font-cairo text-[10px] md:text-sm mb-0.5">عمره رحمه الله</p>
+                  <p className="text-white font-cairo font-bold text-sm md:text-lg leading-none">56 سنة</p>
                 </div>
               </div>
 
